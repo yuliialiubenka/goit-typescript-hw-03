@@ -14,11 +14,11 @@
 
 */
 
-class Employee {
+/*class Employee {
   // Заповніть модифікатори доступу
-  name: string;
-  department: string;
-  salary: number;
+  public name: string;
+  private department: string;
+  protected salary: number;
 
   constructor(name: string, department: string, salary: number) {
     this.name = name;
@@ -33,7 +33,32 @@ class Employee {
 
 class Manager extends Employee {
   // Реалізуйте конструктор та збільшіть salary на 10000
+  constructor(name: string, department: string, salary: number) {
+    super(name, department, salary+=10000); // Виклик батьківського конструктора
+  }
+}
+*/
+
+class Employee {
+  constructor(public name: string, private department: string, protected salary: number) {}
+
+  getEmployeeDetails() {
+    return `Name: ${this.name}, Department: ${this.department}, Salary: ${this.salary}`;
+  }
 }
 
+class Manager extends Employee {
+  // Реалізуйте конструктор та збільшіть salary на 10000
+  constructor(name: string, department: string, salary: number) {
+    super(name, department, salary+=10000); // Виклик батьківського конструктора
+  }
+
+  // consoleLog(): void {
+  //   console.log(this.salary);
+  // }
+}
+
+// const manager = new Manager("Yuliia", "IT", 20000);
+// manager.consoleLog();
 
 export {};
